@@ -256,6 +256,80 @@
                 }
             ],
             "stylesData": ""
+        },
+        {
+            "name": "TaskComponent",
+            "id": "component-TaskComponent-119e2ca54280e14c2de07c6e432e5def",
+            "file": "src/app/components/task.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-task",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div class=\"list-item\">\n  <input type=\"text\" [value]=\"task.title\" readonly=\"true\" />\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "task",
+                    "line": 13,
+                    "type": "any"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onArchiveTask",
+                    "defaultValue": "new EventEmitter()",
+                    "line": 19,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "onPinTask",
+                    "defaultValue": "new EventEmitter()",
+                    "line": 16,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-task',\r\n  template: `\r\n    <div class=\"list-item\">\r\n      <input type=\"text\" [value]=\"task.title\" readonly=\"true\" />\r\n    </div>\r\n  `,\r\n})\r\nexport class TaskComponent implements OnInit {\r\n  title: string;\r\n  @Input() task: any;\r\n\r\n  // tslint:disable-next-line: no-output-on-prefix\r\n  @Output() onPinTask: EventEmitter<any> = new EventEmitter();\r\n\r\n  // tslint:disable-next-line: no-output-on-prefix\r\n  @Output() onArchiveTask: EventEmitter<any> = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {}\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 19
+            },
+            "implements": [
+                "OnInit"
+            ]
         }
     ],
     "modules": [
@@ -299,6 +373,30 @@
     ],
     "miscellaneous": {
         "variables": [
+            {
+                "name": "actionsData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/task.stories.ts",
+                "type": "object",
+                "defaultValue": "{\r\n  onPinTask: action('onPinTask'),\r\n  onArchiveTask: action('onArchiveTask'),\r\n}"
+            },
+            {
+                "name": "Archived",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/task.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: {\r\n      ...taskData,\r\n      state: 'TASK_ARCHIVED',\r\n    },\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/task.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: taskData,\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+            },
             {
                 "name": "environment",
                 "ctype": "miscellaneous",
@@ -364,6 +462,14 @@
                 "defaultValue": "() => {\n    let storage = {};\n    return {\n      getItem: key => (key in storage ? storage[key] : null),\n      setItem: (key, value) => (storage[key] = value || ''),\n      removeItem: key => delete storage[key],\n      clear: () => (storage = {}),\n    };\n  }"
             },
             {
+                "name": "Pinned",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/task.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: {\r\n      ...taskData,\r\n      state: 'TASK_PINNED',\r\n    },\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+            },
+            {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -386,6 +492,14 @@
                 "file": "src/stories/Button.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "taskData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/task.stories.ts",
+                "type": "object",
+                "defaultValue": "{\r\n  id: '1',\r\n  title: 'Test Task',\r\n  state: 'Task_INBOX',\r\n  updated_at: new Date(2019, 0, 1, 9, 0),\r\n}"
             },
             {
                 "name": "Template",
@@ -416,6 +530,48 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "src/app/components/task.stories.ts": [
+                {
+                    "name": "actionsData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/task.stories.ts",
+                    "type": "object",
+                    "defaultValue": "{\r\n  onPinTask: action('onPinTask'),\r\n  onArchiveTask: action('onArchiveTask'),\r\n}"
+                },
+                {
+                    "name": "Archived",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/task.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: {\r\n      ...taskData,\r\n      state: 'TASK_ARCHIVED',\r\n    },\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/task.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: taskData,\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+                },
+                {
+                    "name": "Pinned",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/task.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: TaskComponent,\r\n  props: {\r\n    task: {\r\n      ...taskData,\r\n      state: 'TASK_PINNED',\r\n    },\r\n    onPinTask: actionsData.onPinTask,\r\n    onArchiveTask: actionsData.onArchiveTask,\r\n  },\r\n})"
+                },
+                {
+                    "name": "taskData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/task.stories.ts",
+                    "type": "object",
+                    "defaultValue": "{\r\n  id: '1',\r\n  title: 'Test Task',\r\n  state: 'Task_INBOX',\r\n  updated_at: new Date(2019, 0, 1, 9, 0),\r\n}"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -547,7 +703,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 4,
+        "count": 3,
         "status": "low",
         "files": [
             {
@@ -557,6 +713,65 @@
                 "name": "AppComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TaskComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actionsData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Archived",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Pinned",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "taskData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
